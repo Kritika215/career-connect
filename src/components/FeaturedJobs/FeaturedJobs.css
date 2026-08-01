@@ -1,0 +1,25 @@
+.featured{
+
+    padding:50px;
+
+}
+
+.featured h1{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+.jobs{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:30px;
+
+    flex-wrap:wrap;
+
+}

@@ -1,28 +1,30 @@
 import "./Hero.css";
 
-function Hero() {
+function Hero({search,setSearch}) {
+
   return (
+
     <section className="hero">
 
       <h1>Find Your Dream Job Today</h1>
 
-      <p>
-        Thousands of jobs from top companies waiting for you.
-      </p>
+      <p>Thousands of jobs from top companies waiting for you.</p>
 
       <div className="search-box">
 
         <input
           type="text"
           placeholder="Search Jobs..."
+          value={search}
+          onChange={(e)=>setSearch(e.target.value)}
         />
-
-        <button>Search</button>
 
       </div>
 
     </section>
+
   );
+
 }
 
 export default Hero;

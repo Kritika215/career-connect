@@ -6,6 +6,7 @@ import Register from "./pages/Register/Register";
 import Jobs from "./pages/Jobs/Jobs";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Profile from "./pages/Profile/Profile";
+import JobDetails from "./pages/JobDetails/JobDetails";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
 
         <Route path="/profile" element={<Profile />} />
+        <Route path="/jobs/:id" element={<JobDetails />} />
 
       </Routes>
     </BrowserRouter>

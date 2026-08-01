@@ -1,0 +1,46 @@
+.post-job{
+    max-width:700px;
+    margin:40px auto;
+    padding:30px;
+    background:#fff;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.post-job h1{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.post-job form{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.post-job input,
+.post-job select,
+.post-job textarea{
+    padding:12px;
+    font-size:16px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+.post-job textarea{
+    resize:none;
+}
+
+.post-job button{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:14px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.post-job button:hover{
+    background:#1d4ed8;
+}

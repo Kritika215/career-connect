@@ -50,3 +50,14 @@
     cursor:pointer;
     font-size:16px;
 }
+
+.apply-btn:disabled{
+    background:#16a34a;
+    cursor:not-allowed;
+}
+
+.success-msg{
+    margin-top:15px;
+    color:green;
+    font-weight:bold;
+}

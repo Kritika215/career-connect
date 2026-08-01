@@ -1,4 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
 import "./JobDetails.css";
 
 const jobs = [
@@ -51,6 +52,34 @@ function JobDetails() {
     const navigate = useNavigate();
 
     const job = jobs.find((item)=>item.id===Number(id));
+    const [applied, setApplied] = useState(() => {
+
+  const appliedJobs =
+    JSON.parse(localStorage.getItem("appliedJobs")) || [];
+
+  return appliedJobs.includes(Number(id));
+
+});
+
+function handleApply() {
+
+  const appliedJobs =
+    JSON.parse(localStorage.getItem("appliedJobs")) || [];
+
+  if (!appliedJobs.includes(Number(id))) {
+
+    appliedJobs.push(Number(id));
+
+    localStorage.setItem(
+      "appliedJobs",
+      JSON.stringify(appliedJobs)
+    );
+
+  }
+
+  setApplied(true);
+
+}
 
     if(!job){
 
@@ -129,12 +158,21 @@ function JobDetails() {
 
             </p>
 
-            <button className="apply-btn">
+           <button
+  className="apply-btn"
+  onClick={handleApply}
+  disabled={applied}
+>
+  {applied ? "Applied ✓" : "Apply Now"}
+</button>
 
-                Apply Now
-
-            </button>
-
+{
+  applied && (
+    <p className="success-msg">
+      🎉 Application Submitted Successfully!
+    </p>
+  )
+}
         </div>
 
     )

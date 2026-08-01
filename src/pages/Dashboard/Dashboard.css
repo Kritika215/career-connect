@@ -1,0 +1,69 @@
+.dashboard{
+
+    max-width:1200px;
+
+    margin:auto;
+
+    padding:40px;
+
+}
+
+.dashboard h1{
+
+    margin-bottom:30px;
+
+}
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:20px;
+
+}
+
+.stat-card{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:12px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+
+    text-align:center;
+
+}
+
+.stat-card h2{
+
+    color:#2563eb;
+
+}
+
+.section{
+
+    margin-top:50px;
+
+}
+
+.application{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    padding:15px;
+
+    border-bottom:1px solid #ddd;
+
+}
+
+.status{
+
+    color:green;
+
+}

@@ -1,39 +1,65 @@
 import { Link } from "react-router-dom";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { FaLocationDot } from "react-icons/fa6";
+import { BsBriefcaseFill } from "react-icons/bs";
 import "./JobCard.css";
 
 function JobCard({
   id,
   title,
   company,
+  logo,
   salary,
+  location,
+  experience,
+  type,
   saved,
   toggleSave
 }) {
-
   return (
 
     <div className="card">
 
-      <div className="heart">
+      <button
+        className="heart-btn"
+        onClick={() => toggleSave(id)}
+      >
+        {saved ? <FaHeart color="red" /> : <FaRegHeart />}
+      </button>
 
-        <button
-          className="heart-btn"
-          onClick={() => toggleSave(id)}
-        >
-          {saved ? <FaHeart /> : <FaRegHeart />}
-        </button>
-
-      </div>
+      {/* Company Logo */}
+    <div className="company-avatar">
+  <img
+    src={logo}
+    alt={company}
+    className="company-logo"
+  />
+</div>
 
       <h2>{title}</h2>
 
-      <p>{company}</p>
+      <h4>{company}</h4>
+
+      <p>
+        <FaLocationDot />
+        {" "}
+        {location}
+      </p>
+
+      <p>
+        <BsBriefcaseFill />
+        {" "}
+        {type}
+      </p>
+
+      <p>{experience}</p>
 
       <h3>{salary}</h3>
 
       <Link to={`/jobs/${id}`}>
-        <button>View Details</button>
+        <button className="details-btn">
+          View Details
+        </button>
       </Link>
 
     </div>

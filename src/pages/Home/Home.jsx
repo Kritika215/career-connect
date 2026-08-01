@@ -8,47 +8,9 @@ import Companies from "../../components/Companies/Companies";
 import Stats from "../../components/Stats/Stats";
 import Footer from "../../components/Footer/Footer";
 import Filters from "../../components/Filters/Filters";
+import jobs from "../../data/jobs";
 
 function Home() {
-
-  const jobs = [
-    {
-      id: 1,
-      title: "Frontend Developer",
-      company: "Google",
-      salary: "₹12 LPA",
-      location: "Bangalore",
-      experience: "2 Years",
-      type: "Full Time"
-    },
-    {
-      id: 2,
-      title: "Backend Developer",
-      company: "Amazon",
-      salary: "₹18 LPA",
-      location: "Hyderabad",
-      experience: "3 Years",
-      type: "Full Time"
-    },
-    {
-      id: 3,
-      title: "MERN Stack Developer",
-      company: "Microsoft",
-      salary: "₹20 LPA",
-      location: "Remote",
-      experience: "1 Year",
-      type: "Remote"
-    },
-    {
-      id: 4,
-      title: "React Developer",
-      company: "Adobe",
-      salary: "₹15 LPA",
-      location: "Pune",
-      experience: "2 Years",
-      type: "Internship"
-    }
-  ];
 
   const [search, setSearch] = useState("");
   const [location, setLocation] = useState("");
@@ -86,19 +48,13 @@ const [type, setType] = useState("");
         setSearch={setSearch}
       />
 
-      <Hero
-    search={search}
-    setSearch={setSearch}
-/>
 
-<Filters
-    search={search}
-    setSearch={setSearch}
-    location={location}
-    setLocation={setLocation}
-    type={type}
-    setType={setType}
-/>
+        <Filters
+            location={location}
+            setLocation={setLocation}
+            type={type}
+            setType={setType}
+        />      
 
       <Categories />
 

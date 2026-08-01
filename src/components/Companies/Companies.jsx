@@ -1,44 +1,50 @@
 import "./Companies.css";
 
-function Companies(){
+import google from "../../assets/companyLogos/google.svg";
+import microsoft from "../../assets/companyLogos/microsoft.svg";
+import amazon from "../../assets/companyLogos/amazon.svg";
+import adobe from "../../assets/companyLogos/adobe.svg";
+import meta from "../../assets/companyLogos/meta.svg";
+import netflix from "../../assets/companyLogos/netflix.svg";
 
-    const companies=[
-        "Google",
-        "Microsoft",
-        "Amazon",
-        "Adobe",
-        "Oracle",
-        "TCS",
-        "Infosys",
-        "Accenture"
-    ];
+function Companies() {
 
-    return(
+  const companies = [
+    { id: 1, name: "Google", logo: google },
+    { id: 2, name: "Microsoft", logo: microsoft },
+    { id: 3, name: "Amazon", logo: amazon },
+    { id: 4, name: "Adobe", logo: adobe },
+    { id: 5, name: "Meta", logo: meta },
+    { id: 6, name: "Netflix", logo: netflix }
+  ];
 
-        <section className="companies">
+  return (
+    <section className="companies">
 
-            <h2>Top Hiring Companies</h2>
+      <h2>Top Companies Hiring</h2>
 
-            <div className="company-list">
+      <div className="companies-grid">
 
-                {
+        {companies.map((company) => (
 
-                    companies.map((company,index)=>
+          <div className="company-card" key={company.id}>
 
-                        <div className="company" key={index}>
-                            {company}
-                        </div>
+            <img
+              src={company.logo}
+              alt={company.name}
+              className="company-logo"
+            />
 
-                    )
+            <h3>{company.name}</h3>
 
-                }
+          </div>
 
-            </div>
+        ))}
 
-        </section>
+      </div>
 
-    )
-
+    </section>
+  );
 }
 
 export default Companies;

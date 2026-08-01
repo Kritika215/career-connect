@@ -1,18 +1,71 @@
 .companies{
-    padding:60px;
-    background:#f5f5f5;
+
+padding:80px 8%;
+
+background:white;
+
+text-align:center;
+
 }
 
-.company-list{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:20px;
+.companies h2{
+
+font-size:40px;
+
+margin-bottom:10px;
+
 }
 
-.company{
-    padding:20px 30px;
-    background:white;
-    border-radius:10px;
-    box-shadow:0 5px 15px rgba(0,0,0,.1);
+.companies p{
+
+color:#64748b;
+
+margin-bottom:50px;
+
+}
+
+.company-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+
+gap:25px;
+
+}
+
+.company-card{
+    background:#fff;
+    border-radius:18px;
+    padding:30px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+    transition:0.3s;
+    text-align:center;
+}
+
+.company-card:hover{
+
+transform:translateY(-8px);
+
+}
+
+.company-card img{
+    width:70px;
+    height:70px;
+    object-fit:contain;
+    display:block;
+    margin:0 auto 20px;
+    background:transparent;
+}
+
+.company-card h3{
+    margin-top:15px;
+    font-size:22px;
+    color:#1e293b;
+}
+.company-logo{
+    width:80px;
+    height:80px;
+    object-fit:contain;
+    margin:0 auto 20px;
 }

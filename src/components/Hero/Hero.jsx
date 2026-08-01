@@ -4,24 +4,32 @@ function Hero({search,setSearch}) {
 
   return (
 
-    <section className="hero">
+   <section className="hero">
 
-      <h1>Find Your Dream Job Today</h1>
+  <div className="hero-content">
 
-      <p>Thousands of jobs from top companies waiting for you.</p>
+    <h1>Find Your Dream Job Today</h1>
 
-      <div className="search-box">
+    <p>
+      Thousands of jobs from top companies waiting for you.
+    </p>
 
-        <input
-          type="text"
-          placeholder="Search Jobs..."
-          value={search}
-          onChange={(e)=>setSearch(e.target.value)}
-        />
+    <div className="search-box">
 
-      </div>
+      <input
+        type="text"
+        placeholder="Search Jobs..."
+        value={search}
+        onChange={(e)=>setSearch(e.target.value)}
+      />
 
-    </section>
+      <button>Search</button>
+
+    </div>
+
+  </div>
+
+</section>
 
   );
 

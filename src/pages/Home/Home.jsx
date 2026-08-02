@@ -15,7 +15,11 @@ function Home() {
   const [search, setSearch] = useState("");
   const [location, setLocation] = useState("");
 const [type, setType] = useState("");
-  const [savedJobs, setSavedJobs] = useState([]);
+  const [savedJobs,setSavedJobs]=useState(
+
+    JSON.parse(localStorage.getItem("savedJobs")) || []
+
+);
 
   const filteredJobs = jobs.filter((job) => {
 
@@ -31,13 +35,30 @@ const [type, setType] = useState("");
     return titleMatch && locationMatch && typeMatch;
 
 });
-  function toggleSave(id) {
-    if (savedJobs.includes(id)) {
-      setSavedJobs(savedJobs.filter((jobId) => jobId !== id));
-    } else {
-      setSavedJobs([...savedJobs, id]);
+  function toggleSave(id){
+
+    let updated;
+
+    if(savedJobs.includes(id)){
+
+        updated = savedJobs.filter(jobId=>jobId!==id);
+
     }
-  }
+
+    else{
+
+        updated = [...savedJobs,id];
+
+    }
+
+    setSavedJobs(updated);
+
+    localStorage.setItem(
+        "savedJobs",
+        JSON.stringify(updated)
+    );
+
+}
 
   return (
     <>

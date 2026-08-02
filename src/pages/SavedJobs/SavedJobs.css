@@ -1,0 +1,25 @@
+.saved-page{
+
+    padding:100px 8%;
+
+}
+
+.saved-page h1{
+
+    text-align:center;
+
+    margin-bottom:50px;
+
+    font-size:40px;
+
+}
+
+.saved-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:30px;
+
+}

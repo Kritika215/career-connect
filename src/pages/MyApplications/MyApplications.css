@@ -1,0 +1,71 @@
+.applications-page{
+
+    padding:100px 8%;
+
+    min-height:100vh;
+
+    background:#f8fafc;
+
+}
+
+.applications-page h1{
+
+    text-align:center;
+
+    margin-bottom:40px;
+
+    color:#2563eb;
+
+}
+
+.application-list{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:25px;
+
+}
+
+.application-card{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:18px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.application-card h2{
+
+    margin-bottom:10px;
+
+}
+
+.application-card h4{
+
+    color:#2563eb;
+
+    margin-bottom:15px;
+
+}
+
+.status{
+
+    display:inline-block;
+
+    margin-top:15px;
+
+    padding:8px 18px;
+
+    background:#22c55e;
+
+    color:white;
+
+    border-radius:30px;
+
+}

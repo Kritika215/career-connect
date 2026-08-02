@@ -1,144 +1,68 @@
+import Navbar from "../../components/Navbar/Navbar";
+import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 import "./Dashboard.css";
 
-function Dashboard(){
+function Dashboard() {
 
-const stats=[
+    const { user, logout } = useAuth();
+    const navigate = useNavigate();
 
-{
-title:"Applied Jobs",
-value:12
-},
+    function handleLogout() {
 
-{
-title:"Saved Jobs",
-value:5
-},
+        logout();
 
-{
-title:"Interviews",
-value:3
-},
+        navigate("/login");
 
-{
-title:"Profile",
-value:"80%"
-}
+    }
 
-];
+    return (
 
-const applications=[
+        <>
+            <Navbar />
 
-{
-company:"Google",
-role:"Frontend Developer",
-status:"Applied"
-},
+            <div className="dashboard">
 
-{
-company:"Microsoft",
-role:"React Developer",
-status:"Interview"
-},
+                <div className="dashboard-card">
 
-{
-company:"Amazon",
-role:"Backend Developer",
-status:"Rejected"
-}
+                    <h1>Welcome 👋</h1>
 
-];
+                    <h2>{user?.email}</h2>
 
-return(
+                    <p>
+                        You're successfully logged in to CareerConnect.
+                    </p>
 
-<div className="dashboard">
+                    <div className="dashboard-buttons">
 
-<h1>
+                        <button
+                            onClick={()=>navigate("/profile")}
+                        >
+                            My Profile
+                        </button>
 
-Welcome Back 👋
+                        <button
+                            onClick={()=>navigate("/saved")}
+                        >
+                            Saved Jobs
+                        </button>
 
-</h1>
+                        <button
+                            className="logout-btn"
+                            onClick={handleLogout}
+                        >
+                            Logout
+                        </button>
 
-<div className="stats">
+                    </div>
 
-{
+                </div>
 
-stats.map((item,index)=>
+            </div>
 
-<div
-className="stat-card"
-key={index}
->
+        </>
 
-<h2>
-
-{item.value}
-
-</h2>
-
-<p>
-
-{item.title}
-
-</p>
-
-</div>
-
-)
-
-}
-
-</div>
-
-<div className="section">
-
-<h2>
-
-Recent Applications
-
-</h2>
-
-{
-
-applications.map((app,index)=>
-
-<div
-className="application"
-key={index}
->
-
-<div>
-
-<h3>
-
-{app.role}
-
-</h3>
-
-<p>
-
-{app.company}
-
-</p>
-
-</div>
-
-<p className="status">
-
-{app.status}
-
-</p>
-
-</div>
-
-)
-
-}
-
-</div>
-
-</div>
-
-)
+    );
 
 }
 

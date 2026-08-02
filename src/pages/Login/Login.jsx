@@ -1,77 +1,89 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import Navbar from "../../components/Navbar/Navbar";
 import "./Login.css";
 
 function Login() {
-  const { login } = useAuth();
-  const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+    const navigate = useNavigate();
 
-  function handleChange(e) {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  }
+    const { login } = useAuth();
 
-  function handleSubmit(e) {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    function handleLogin(e){
+
     e.preventDefault();
 
-    if (!formData.email || !formData.password) {
-      alert("Please fill all fields");
-      return;
+    if(email==="" || password===""){
+
+        alert("Please fill all fields");
+
+        return;
     }
 
     login({
-      name: "Kritika",
-      email: formData.email,
-      role: "student",
+        email
     });
 
     navigate("/dashboard");
-  }
 
-  return (
-    <div className="login-container">
+}
 
-      <form className="login-card" onSubmit={handleSubmit}>
+    return (
 
-        <h1>Login</h1>
+        <>
+            <Navbar/>
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-        />
+            <div className="login-container">
 
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-        />
+                <form
+                    className="login-form"
+                    onSubmit={handleLogin}
+                >
 
-        <button type="submit">
-          Login
-        </button>
+                    <h1>Welcome Back 👋</h1>
 
-        <p>
-          Don't have an account?
-          <Link to="/register"> Register</Link>
-        </p>
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e)=>setEmail(e.target.value)}
+                    />
 
-      </form>
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e)=>setPassword(e.target.value)}
+                    />
 
-    </div>
-  );
+                    <button type="submit">
+                        Login
+                    </button>
+
+                    <p>
+
+                        Don't have an account?
+
+                        <Link to="/register">
+
+                            Register
+
+                        </Link>
+
+                    </p>
+
+                </form>
+
+            </div>
+
+        </>
+
+    );
+
 }
 
 export default Login;

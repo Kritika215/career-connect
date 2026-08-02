@@ -21,17 +21,33 @@ function Navbar() {
 
       </div>
 
-      <ul className="nav-links">
+     <ul className="nav-links">
 
-        <li><Link to="/">Home</Link></li>
+  <li>
+    <Link to="/">Home</Link>
+  </li>
 
-        <li><Link to="/jobs">Jobs</Link></li>
+  <li>
+    <Link to="/jobs">Jobs</Link>
+  </li>
 
-        <li><Link to="/dashboard">Dashboard</Link></li>
+  <li>
+    <Link to="/saved">Saved Jobs</Link>
+  </li>
 
-        <li><Link to="/profile">Profile</Link></li>
+  <li>
+    <Link to="/applications">Applications</Link>
+  </li>
 
-      </ul>
+  <li>
+    <Link to="/login">Login</Link>
+  </li>
+
+  <li>
+    <Link to="/register">Register</Link>
+  </li>
+
+</ul>
 
       <div className="auth">
 

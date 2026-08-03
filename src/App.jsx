@@ -13,6 +13,7 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import SavedJobs from "./pages/SavedJobs/SavedJobs";
 import MyApplications from "./pages/MyApplications/MyApplications";
 
+
 function App() {
   return (
     <Routes>
@@ -23,41 +24,12 @@ function App() {
       <Route path="/jobs/:id" element={<JobDetails />} />
       <Route path="/dashboard" element={ <ProtectedRoute> <Dashboard /> </ProtectedRoute>} />
       <Route path="/saved" element={<SavedJobs/>}/>
-     <Route
-path="/profile"
-  element={
-    <ProtectedRoute>
-      <Profile />
-    </ProtectedRoute>
-  }
-/>
-     <Route
-  path="/recruiter"
-  element={
-    <ProtectedRoute>
-      <RecruiterDashboard />
-    </ProtectedRoute>
-  }
-/>
-      <Route
-  path="/post-job"
-  element={
-    <ProtectedRoute>
-      <PostJob />
-    </ProtectedRoute>
-  }
-/>
+     <Route path="/profile" element={ <ProtectedRoute><Profile /></ProtectedRoute>} />
+     <Route path="/recruiter" element={ <ProtectedRoute>   <RecruiterDashboard /> </ProtectedRoute>} />
+      <Route path="/post-job" element={ <ProtectedRoute> <PostJob />
+  </ProtectedRoute>} />
 
-<Route
-    path="/applications"
-    element={
-        <ProtectedRoute>
-            <MyApplications/>
-        </ProtectedRoute>
-    }
-/>
-    </Routes>
-  );
+<Route path="/applications" element={ <ProtectedRoute> <MyApplications/> </ProtectedRoute>} /> </Routes>);
 }
 
 export default App;

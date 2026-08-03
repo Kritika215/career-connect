@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
+import { toast } from "react-toastify";
 import "./Profile.css";
 
 function Profile() {
@@ -56,7 +57,7 @@ const [resume, setResume] = useState(
     resume
   );
 
-  alert("Profile Saved Successfully!");
+  toast.success("Profile Saved Successfully!");
 
 }
   return (

@@ -1,181 +1,201 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
+import ApplyModal from "../../components/ApplyModal/ApplyModal";
 import "./JobDetails.css";
 
 const jobs = [
   {
-    id:1,
-    title:"Frontend Developer",
-    company:"Google",
-    salary:"₹12 LPA",
-    location:"Bangalore",
-    experience:"2 Years",
-    type:"Full Time",
-    description:"Build modern React applications and reusable UI components."
+    id: 1,
+    title: "Frontend Developer",
+    company: "Google",
+    salary: "₹12 LPA",
+    location: "Bangalore",
+    experience: "2 Years",
+    type: "Full Time",
+    description: "Build modern React applications and reusable UI components."
   },
   {
-    id:2,
-    title:"Backend Developer",
-    company:"Amazon",
-    salary:"₹18 LPA",
-    location:"Hyderabad",
-    experience:"3 Years",
-    type:"Full Time",
-    description:"Develop scalable REST APIs using Node.js and Express."
+    id: 2,
+    title: "Backend Developer",
+    company: "Amazon",
+    salary: "₹18 LPA",
+    location: "Hyderabad",
+    experience: "3 Years",
+    type: "Full Time",
+    description: "Develop scalable REST APIs using Node.js and Express."
   },
   {
-    id:3,
-    title:"MERN Stack Developer",
-    company:"Microsoft",
-    salary:"₹20 LPA",
-    location:"Remote",
-    experience:"1 Year",
-    type:"Remote",
-    description:"Develop complete MERN stack applications."
+    id: 3,
+    title: "MERN Stack Developer",
+    company: "Microsoft",
+    salary: "₹20 LPA",
+    location: "Remote",
+    experience: "1 Year",
+    type: "Remote",
+    description: "Develop complete MERN stack applications."
   },
   {
-    id:4,
-    title:"React Developer",
-    company:"Adobe",
-    salary:"₹15 LPA",
-    location:"Pune",
-    experience:"2 Years",
-    type:"Internship",
-    description:"Create responsive React user interfaces."
+    id: 4,
+    title: "React Developer",
+    company: "Adobe",
+    salary: "₹15 LPA",
+    location: "Pune",
+    experience: "2 Years",
+    type: "Internship",
+    description: "Create responsive React user interfaces."
   }
 ];
 
 function JobDetails() {
 
-    const { id } = useParams();
+  const { id } = useParams();
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const job = jobs.find(
+    (item) => item.id === Number(id)
+  );
 
-    const job = jobs.find((item)=>item.id===Number(id));
-    const [applied, setApplied] = useState(() => {
+  const [applied, setApplied] = useState(() => {
 
-  const appliedJobs =
-    JSON.parse(localStorage.getItem("appliedJobs")) || [];
+    const appliedJobs =
+      JSON.parse(localStorage.getItem("appliedJobs")) || [];
 
-  return appliedJobs.includes(Number(id));
+    return appliedJobs.includes(Number(id));
 
-});
+  });
 
-function handleApply() {
+  const [showModal, setShowModal] = useState(false);
 
-  const appliedJobs =
-    JSON.parse(localStorage.getItem("appliedJobs")) || [];
+  function handleApply() {
 
-  if (!appliedJobs.includes(Number(id))) {
+    if (applied) return;
 
-    appliedJobs.push(Number(id));
-
-    localStorage.setItem(
-      "appliedJobs",
-      JSON.stringify(appliedJobs)
-    );
+    setShowModal(true);
 
   }
 
-  setApplied(true);
+  if (!job) {
 
-}
+    return <h1>Job Not Found</h1>;
 
-    if(!job){
+  }
 
-        return <h1>Job Not Found</h1>
+  return (
 
-    }
+    <div className="job-details">
 
-    return(
+      <button
+        className="back-btn"
+        onClick={() => navigate(-1)}
+      >
+        ← Back
+      </button>
 
-        <div className="job-details">
+      <div className="job-header">
 
-            <button
-            className="back-btn"
-            onClick={()=>navigate(-1)}
-            >
-                ← Back
-            </button>
+        <div>
 
-            <div className="job-header">
+          <h1>{job.title}</h1>
 
-                <div>
+          <p className="company">
+            {job.company}
+          </p>
 
-                    <h1>{job.title}</h1>
-
-                    <p className="company">
-
-                        {job.company}
-
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div className="info">
-
-                <div>
-
-                    <strong>Salary</strong>
-
-                    <p>{job.salary}</p>
-
-                </div>
-
-                <div>
-
-                    <strong>Location</strong>
-
-                    <p>{job.location}</p>
-
-                </div>
-
-                <div>
-
-                    <strong>Experience</strong>
-
-                    <p>{job.experience}</p>
-
-                </div>
-
-                <div>
-
-                    <strong>Job Type</strong>
-
-                    <p>{job.type}</p>
-
-                </div>
-
-            </div>
-
-            <h3>Description</h3>
-
-            <p>
-
-                {job.description}
-
-            </p>
-
-           <button
-  className="apply-btn"
-  onClick={handleApply}
-  disabled={applied}
->
-  {applied ? "Applied ✓" : "Apply Now"}
-</button>
-
-{
-  applied && (
-    <p className="success-msg">
-      🎉 Application Submitted Successfully!
-    </p>
-  )
-}
         </div>
 
-    )
+      </div>
+
+      <div className="info">
+
+        <div>
+
+          <strong>Salary</strong>
+
+          <p>{job.salary}</p>
+
+        </div>
+
+        <div>
+
+          <strong>Location</strong>
+
+          <p>{job.location}</p>
+
+        </div>
+
+        <div>
+
+          <strong>Experience</strong>
+
+          <p>{job.experience}</p>
+
+        </div>
+
+        <div>
+
+          <strong>Job Type</strong>
+
+          <p>{job.type}</p>
+
+        </div>
+
+      </div>
+
+      <h3>Description</h3>
+
+      <p>{job.description}</p>
+
+      <button
+        className="apply-btn"
+        onClick={handleApply}
+        disabled={applied}
+      >
+        {applied ? "Applied ✓" : "Apply Now"}
+      </button>
+
+      {applied && (
+
+        <p className="success-msg">
+          🎉 Application Submitted Successfully!
+        </p>
+
+      )}
+
+      {showModal && (
+
+        <ApplyModal
+
+          job={job}
+
+          closeModal={() => {
+
+            const appliedJobs =
+              JSON.parse(localStorage.getItem("appliedJobs")) || [];
+
+            if (!appliedJobs.includes(job.id)) {
+
+              appliedJobs.push(job.id);
+
+              localStorage.setItem(
+                "appliedJobs",
+                JSON.stringify(appliedJobs)
+              );
+
+            }
+
+            setApplied(true);
+
+            setShowModal(false);
+
+          }}
+
+        />
+
+      )}
+
+    </div>
+
+  );
 
 }
 

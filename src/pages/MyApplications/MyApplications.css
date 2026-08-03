@@ -1,10 +1,10 @@
 .applications-page{
 
-    padding:100px 8%;
+    max-width:1100px;
 
-    min-height:100vh;
+    margin:auto;
 
-    background:#f8fafc;
+    padding:40px 20px;
 
 }
 
@@ -18,31 +18,23 @@
 
 }
 
-.application-list{
-
-    display:grid;
-
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-
-    gap:25px;
-
-}
-
 .application-card{
 
     background:white;
 
+    border-radius:16px;
+
     padding:25px;
 
-    border-radius:18px;
+    margin-bottom:20px;
 
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
 
 }
 
 .application-card h2{
 
-    margin-bottom:10px;
+    margin-bottom:8px;
 
 }
 
@@ -54,18 +46,42 @@
 
 }
 
-.status{
+.application-card p{
 
-    display:inline-block;
+    margin:8px 0;
 
-    margin-top:15px;
+}
 
-    padding:8px 18px;
+.application-card button{
 
-    background:#22c55e;
+    margin-top:20px;
+
+    padding:12px 22px;
+
+    background:#ef4444;
 
     color:white;
 
-    border-radius:30px;
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+.application-card button:hover{
+
+    background:#dc2626;
+
+}
+
+.empty{
+
+    text-align:center;
+
+    color:gray;
+
+    font-size:20px;
 
 }

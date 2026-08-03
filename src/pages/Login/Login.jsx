@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import Navbar from "../../components/Navbar/Navbar";
+import { toast } from "react-toastify";
 import "./Login.css";
 
 function Login() {
@@ -13,20 +14,27 @@ function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    function handleLogin(e){
+    function handleLogin(e) {
 
     e.preventDefault();
 
-    if(email==="" || password===""){
+    if (email === "" || password === "") {
 
-        alert("Please fill all fields");
+        toast.error("Please fill all fields");
 
         return;
+
     }
 
     login({
-        email
+        email,
     });
+
+    toast.success("Login Successful!");
+
+    navigate("/dashboard");
+
+}
 
     navigate("/dashboard");
 

@@ -1,10 +1,34 @@
+import { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import "./MyApplications.css";
 
 function MyApplications() {
 
-  const applications =
-    JSON.parse(localStorage.getItem("applications")) || [];
+  const [applications, setApplications] = useState([]);
+
+  useEffect(() => {
+
+    const savedApplications =
+      JSON.parse(localStorage.getItem("applications")) || [];
+
+    setApplications(savedApplications);
+
+  }, []);
+
+  function deleteApplication(index) {
+
+    const updatedApplications = [...applications];
+
+    updatedApplications.splice(index, 1);
+
+    setApplications(updatedApplications);
+
+    localStorage.setItem(
+      "applications",
+      JSON.stringify(updatedApplications)
+    );
+
+  }
 
   return (
 
@@ -15,45 +39,52 @@ function MyApplications() {
 
         <h1>My Applications</h1>
 
-        {
-          applications.length === 0 ?
+        {applications.length === 0 ? (
 
-          <h2>No Applications Yet</h2>
+          <p className="empty">
+            No Applications Yet.
+          </p>
 
-          :
+        ) : (
 
-          <div className="application-list">
+          applications.map((application, index) => (
 
-            {
+            <div
+              className="application-card"
+              key={index}
+            >
 
-              applications.map((job,index)=>(
+              <h2>{application.title}</h2>
 
-                <div
-                  key={index}
-                  className="application-card"
-                >
+              <h4>{application.company}</h4>
 
-                  <h2>{job.title}</h2>
+              <p>
+                <strong>Name:</strong> {application.name}
+              </p>
 
-                  <h4>{job.company}</h4>
+              <p>
+                <strong>Email:</strong> {application.email}
+              </p>
 
-                  <p>{job.location}</p>
+              <p>
+                <strong>Phone:</strong> {application.phone}
+              </p>
 
-                  <span className="status">
+              <p>
+                <strong>Status:</strong> {application.status}
+              </p>
 
-                    {job.status}
+              <button
+                onClick={() => deleteApplication(index)}
+              >
+                Delete
+              </button>
 
-                  </span>
+            </div>
 
-                </div>
+          ))
 
-              ))
-
-            }
-
-          </div>
-
-        }
+        )}
 
       </div>
 

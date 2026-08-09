@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { FaBriefcase } from "react-icons/fa";
 import "./Navbar.css";
@@ -6,6 +6,12 @@ import "./Navbar.css";
 function Navbar() {
 
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    logout();
+    navigate("/");
+  }
 
   return (
 
@@ -13,7 +19,7 @@ function Navbar() {
 
       <div className="logo">
 
-        <FaBriefcase className="logo-icon"/>
+        <FaBriefcase className="logo-icon" />
 
         <Link to="/" className="logo-link">
           CareerConnect
@@ -21,69 +27,62 @@ function Navbar() {
 
       </div>
 
-     <ul className="nav-links">
+      <ul className="nav-links">
 
-  <li>
-    <Link to="/">Home</Link>
-  </li>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
 
-  <li>
-    <Link to="/jobs">Jobs</Link>
-  </li>
+        <li>
+          <Link to="/jobs">Jobs</Link>
+        </li>
 
-  <li>
-    <Link to="/saved">Saved Jobs</Link>
-  </li>
+        {user ? (
+          <>
 
-  <li>
-    <Link to="/applications">Applications</Link>
-  </li>
+            <li>
+              <Link to="/saved">Saved Jobs</Link>
+            </li>
 
-  <li>
-    <Link to="/login">Login</Link>
-  </li>
+            <li>
+              <Link to="/applications">Applications</Link>
+            </li>
 
-  <li>
-    <Link to="/register">Register</Link>
-  </li>
+            <li>
+              <Link to="/dashboard">Dashboard</Link>
+            </li>
 
-</ul>
+            <li>
+              <Link to="/profile">Profile</Link>
+            </li>
+
+          </>
+        ) : (
+          <>
+
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+
+            <li>
+              <Link to="/register">Register</Link>
+            </li>
+
+          </>
+        )}
+
+      </ul>
 
       <div className="auth">
 
-        {
-          user ?
-
+        {user && (
           <button
             className="logout-btn"
-            onClick={logout}
+            onClick={handleLogout}
           >
             Logout
           </button>
-
-          :
-
-          <>
-
-            <Link to="/login">
-
-              <button className="login-btn">
-                Login
-              </button>
-
-            </Link>
-
-            <Link to="/register">
-
-              <button className="register-btn">
-                Register
-              </button>
-
-            </Link>
-
-          </>
-
-        }
+        )}
 
       </div>
 

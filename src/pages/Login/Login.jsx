@@ -6,67 +6,95 @@ import { toast } from "react-toastify";
 import "./Login.css";
 
 function Login() {
-    const navigate = useNavigate();
-    const { login } = useAuth();
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
-    function handleLogin(e) {
-        e.preventDefault();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-        if (email === "" || password === "") {
-            toast.error("Please fill all fields");
-            return;
-        }
+  function handleLogin(e) {
 
-        login({
-            email,
-        });
+    e.preventDefault();
 
-        toast.success("Login Successful!");
-        navigate("/dashboard");
+    if (email === "" || password === "") {
+
+      toast.error("Please fill all fields");
+      return;
+
     }
 
-    return (
-        <>
-            <Navbar />
+    const users =
+      JSON.parse(localStorage.getItem("users")) || [];
 
-            <div className="login-container">
-                <form
-                    className="login-form"
-                    onSubmit={handleLogin}
-                >
-                    <h1>Welcome Back 👋</h1>
-
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-
-                    <button type="submit">
-                        Login
-                    </button>
-
-                    <p>
-                        Don't have an account?{" "}
-                        <Link to="/register">
-                            Register
-                        </Link>
-                    </p>
-                </form>
-            </div>
-        </>
+    const user = users.find(
+      (u) =>
+        u.email === email &&
+        u.password === password
     );
+
+    if (!user) {
+
+      toast.error("Invalid Email or Password");
+      return;
+
+    }
+
+    login(user);
+
+    toast.success("Login Successful!");
+
+    navigate("/dashboard");
+
+  }
+
+  return (
+
+    <>
+      <Navbar />
+
+      <div className="login-container">
+
+        <form
+          className="login-form"
+          onSubmit={handleLogin}
+        >
+
+          <h1>Welcome Back 👋</h1>
+
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+
+          <button type="submit">
+            Login
+          </button>
+
+          <p>
+            Don't have an account?{" "}
+            <Link to="/register">
+              Register
+            </Link>
+          </p>
+
+        </form>
+
+      </div>
+
+    </>
+
+  );
+
 }
 
 export default Login;

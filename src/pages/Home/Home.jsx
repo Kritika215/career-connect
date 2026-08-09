@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Navbar from "../../components/Navbar/Navbar";
 import Hero from "../../components/Hero/Hero";
@@ -8,6 +8,7 @@ import Companies from "../../components/Companies/Companies";
 import Stats from "../../components/Stats/Stats";
 import Footer from "../../components/Footer/Footer";
 import Filters from "../../components/Filters/Filters";
+import Pagination from "../../components/Pagination/Pagination";
 
 import jobs from "../../data/jobs";
 
@@ -17,6 +18,7 @@ function Home() {
   const [location, setLocation] = useState("");
   const [type, setType] = useState("");
   const [sortBy, setSortBy] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
   const [savedJobs, setSavedJobs] = useState(
     JSON.parse(localStorage.getItem("savedJobs")) || []
@@ -78,6 +80,23 @@ function Home() {
 
     });
 
+  const jobsPerPage = 6;
+
+  const totalPages = Math.ceil(
+    filteredJobs.length / jobsPerPage
+  );
+
+  const currentJobs = filteredJobs.slice(
+    (currentPage - 1) * jobsPerPage,
+    currentPage * jobsPerPage
+  );
+
+  useEffect(() => {
+
+    setCurrentPage(1);
+
+  }, [search, location, type, sortBy]);
+
   function toggleSave(id) {
 
     let updatedJobs;
@@ -127,9 +146,15 @@ function Home() {
       <Categories />
 
       <FeaturedJobs
-        jobs={filteredJobs}
+        jobs={currentJobs}
         savedJobs={savedJobs}
         toggleSave={toggleSave}
+      />
+
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        setCurrentPage={setCurrentPage}
       />
 
       <Companies />

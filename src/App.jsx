@@ -12,24 +12,76 @@ import PostJob from "./pages/PostJob/PostJob";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import SavedJobs from "./pages/SavedJobs/SavedJobs";
 import MyApplications from "./pages/MyApplications/MyApplications";
-
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   return (
     <Routes>
+
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/jobs" element={<Jobs />} />
       <Route path="/jobs/:id" element={<JobDetails />} />
-      <Route path="/dashboard" element={ <ProtectedRoute> <Dashboard /> </ProtectedRoute>} />
-      <Route path="/saved" element={<SavedJobs/>}/>
-     <Route path="/profile" element={ <ProtectedRoute><Profile /></ProtectedRoute>} />
-     <Route path="/recruiter" element={ <ProtectedRoute>   <RecruiterDashboard /> </ProtectedRoute>} />
-      <Route path="/post-job" element={ <ProtectedRoute> <PostJob />
-  </ProtectedRoute>} />
 
-<Route path="/applications" element={ <ProtectedRoute> <MyApplications/> </ProtectedRoute>} /> </Routes>);
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/saved"
+        element={
+          <ProtectedRoute>
+            <SavedJobs />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/profile"
+        element={
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/recruiter"
+        element={
+          <ProtectedRoute>
+            <RecruiterDashboard />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/post-job"
+        element={
+          <ProtectedRoute>
+            <PostJob />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/applications"
+        element={
+          <ProtectedRoute>
+            <MyApplications />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route path="*" element={<NotFound />} />
+
+    </Routes>
+  );
 }
 
 export default App;

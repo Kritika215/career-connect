@@ -27,15 +27,6 @@ function JobCard({
         {saved ? <FaHeart color="red" /> : <FaRegHeart />}
       </button>
 
-      {/* Company Logo */}
-    <div className="company-avatar">
-  <img
-    src={logo}
-    alt={company}
-    className="company-logo"
-  />
-</div>
-
       <h2>{title}</h2>
 
       <h4>{company}</h4>
